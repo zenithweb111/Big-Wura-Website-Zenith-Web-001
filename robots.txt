@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.bigwurahaircare.vercel.app/sitemap.xml

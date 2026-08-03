@@ -1,0 +1,16 @@
+{
+  "name": "Big Wura Hair Care",
+  "short_name": "Big Wura",
+  "description": "Premium hair care products delivered across Lagos & Ogun State",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0908",
+  "theme_color": "#0A0908",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

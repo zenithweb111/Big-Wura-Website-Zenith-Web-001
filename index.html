@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Primary Meta Tags -->
+    <title>Big Wura Hair Care · Premium Hair Products &amp; Accessories</title>
+    <meta name="description" content="Premium hair care products delivered across Lagos &amp; Ogun State. Shop hydrating shampoo, leave-in conditioner, satin bonnets, and more. WhatsApp-first customer care.">
+    <meta name="theme-color" content="#0A0908">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bigwurahaircare.vercel.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Big Wura Hair Care · Care For Every Strand">
+    <meta property="og:description" content="Premium hair care products delivered across Lagos &amp; Ogun State. Shop hydrating shampoo, leave-in conditioner, satin bonnets, and more.">
+    <meta property="og:url" content="https://bigwurahaircare.vercel.app/">
+    <meta property="og:site_name" content="Big Wura Hair Care">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Big Wura Hair Care · Care For Every Strand">
+    <meta name="twitter:description" content="Premium hair care products delivered across Lagos &amp; Ogun State.">
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Big Wura Hair Care",
+        "description": "Premium hair care products and accessories for natural hair and wigs.",
+        "logo": "https://bigwurahaircare.vercel.app/logo.png",
+        "telephone": "+2348077758240",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lagos",
+            "addressRegion": "Lagos",
+            "addressCountry": "NG"
+        },
+        "openingHours": "Mo-Sa 09:00-19:00",
+        "paymentAccepted": "Opay, Moniepoint",
+        "url": "https://bigwurahaircare.vercel.app/"
+    }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #050505;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== INTRO OVERLAY ===== */
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 60%, #0a0a0a 0%, #050505 70%);
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #intro.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 120px;
+            height: 350px;
+        }
+
+        .strand {
+            width: 3px;
+            height: 350px;
+            border-radius: 999px;
+            transform-origin: bottom;
+            transform: scaleY(0);
+            background: linear-gradient(to top, transparent, gold 25%, #ffe8a5 50%, gold 75%, transparent);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
+            animation: grow 1.8s cubic-bezier(0.22, 0.68, 0.3, 1) 0.9s forwards,
+                       shimmer 1.6s ease-in-out 2.7s infinite;
+        }
+
+        .strand.hide {
+            opacity: 0;
+            filter: blur(4px);
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+
+        .glow {
+            position: absolute;
+            left: 50%;
+            top: 340px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            transform: translateX(-50%) scale(0.5);
+            background: radial-gradient(circle, #fff 0%, #fff6bf 20%, #ffe8a5 45%, gold 70%, rgba(255, 215, 0, 0) 100%);
+            box-shadow: 0 0 20px gold, 0 0 50px rgba(255, 215, 0, 0.5);
+            animation: travel 2.8s cubic-bezier(0.3, 0.1, 0.25, 1) forwards;
+        }
+
+        .pulse {
+            top: -10px;
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+
+        .explode {
+            top: -10px;
+            animation: explode 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .flash {
+            position: fixed;
+            inset: 0;
+            background: #fff6bf;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 110;
+        }
+
+        .flash.fire {
+            animation: flash 1.1s ease-out forwards;
+        }
+
+        #app {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background: #050505;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        #app.reveal {
+            display: block;
+            text-align: left;
+            padding: 0;
+            background: var(--bg);
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        letter-spacing 1.2s ease;
+        }
+
+        .hero-content.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-content h1 {
+            color: #ffe8a5;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .hero-content .sub {
+            color: #d4af37;
+            margin-top: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            font-size: 1.2rem;
+            opacity: 0.85;
+        }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes grow {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.35); }
+        }
+
+        @keyframes travel {
+            from {
+                top: 340px;
+                transform: translateX(-50%) scale(0.5);
+                opacity: 0.5;
+            }
+            to {
+                top: -10px;
+                transform: translateX(-50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1.2);
+                box-shadow: 0 0 20px gold, 0 0 50px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.35);
+                box-shadow: 0 0 35px gold, 0 0 90px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 1;
+            }
+            35% {
+                transform: translateX(-50%) scale(2.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) scale(150);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flash {
+            0% { opacity: 0; }
+            30% { opacity: 0.9; }
+            100% { opacity: 0; }
+        }
+
+        /* ===== MAIN CSS VARIABLES ===== */
+        :root {
+            /* Colors */
+            --bg: #0A0908;
+            --bg-alt: #141210;
+            --bg-card: #1A160F;
+            --bg-elevated: #201B13;
+            --bg-deep: #050403;
+            --cream: #F8F4E8;
+            --cream-soft: #D6CDB4;
+            --cream-dim: #A89E86;
+            --gold: #C9A227;
+            --gold-bright: #E9C34A;
+            --gold-soft: #EAD289;
+            --gold-deep: #8A6D1D;
+            --line: rgba(248, 244, 232, 0.14);
+            --radius: 18px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+            /* Constants */
+            --phone-number: '2348077758240';
+            --business-name: 'Big Wura Hair Care';
+        }
+
+        /* ===== BASE SITE STYLES ===== */
+        #site {
+            font-family: 'Manrope', system-ui, sans-serif;
+            color: var(--cream-soft);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        #site h1,
+        #site h2,
+        #site h3,
+        #site .display {
+            font-family: 'Fraunces', Georgia, serif;
+            color: var(--cream);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.08;
+        }
+
+        #site img {
+            max-width: 100%;
+            display: block;
+        }
+
+        #site a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #site ul {
+            list-style: none;
+        }
+
+        #site p {
+            color: var(--cream-soft);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 5vw, 3rem);
+        }
+
+        .eyebrow {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+        }
+
+        /* ===== SCROLL PROGRESS ===== */
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+            box-shadow: 0 0 10px rgba(233, 195, 74, 0.5);
+            z-index: 60;
+            transition: width 0.1s linear;
+        }
+
+        /* ===== STRAND DIVIDER ===== */
+        .strand-divider {
+            width: 2px;
+            height: 56px;
+            margin: 0 auto 1.4rem;
+            background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold-bright) 50%, var(--gold) 80%, transparent);
+            box-shadow: 0 0 10px rgba(233, 195, 74, 0.35);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.9s var(--ease);
+        }
+
+        .in-view .strand-divider {
+            transform: scaleY(1);
+        }
+
+        /* ===== REVEAL ON SCROLL ===== */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+
+        .in-view.reveal-up,
+        .in-view .reveal-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-up,
+            .strand-divider {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .strand,
+            .glow,
+            .pulse,
+            .explode,
+            .flash {
+                animation: none !important;
+            }
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.95rem 1.9rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            font-family: inherit;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+            white-space: nowrap;
+            border: none;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
+        }
+
+        .btn-primary,
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+            color: #14110B;
+            border: none;
+            box-shadow: 0 10px 28px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-primary:hover,
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(201, 162, 39, 0.45);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 1.5px solid var(--line);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold-soft);
+            transform: translateY(-3px);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ===== NAV ===== */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(10, 9, 8, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 1.1rem clamp(1.25rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold-soft);
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--cream-soft);
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 0.2rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.35s var(--ease);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-cta .btn {
+            padding: 0.65rem 1.35rem;
+            font-size: 0.85rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 22px;
+            position: relative;
+        }
+
+        .nav-toggle:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .nav-toggle span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--cream);
+            transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), top 0.3s var(--ease);
+        }
+
+        .nav-toggle span:nth-child(1) {
+            top: 2px;
+        }
+        .nav-toggle span:nth-child(2) {
+            top: 10px;
+        }
+        .nav-toggle span:nth-child(3) {
+            top: 18px;
+        }
+
+        #siteNav.open .nav-toggle span:nth-child(1) {
+            top: 10px;
+            transform: rotate(45deg);
+        }
+        #siteNav.open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        #siteNav.open .nav-toggle span:nth-child(3) {
+            top: 10px;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 760px) {
+            .nav-links {
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: var(--bg-elevated);
+                flex-direction: column;
+                gap: 0;
+                padding: 0.5rem 1.5rem 1.5rem;
+                box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+                transform: translateY(-8px);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s var(--ease);
+            }
+
+            #siteNav.open .nav-links {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-links a {
+                padding: 0.85rem 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .nav-cta .btn-secondary {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero-wrap {
+            position: relative;
+            padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 3rem) clamp(5rem, 9vw, 7rem);
+            background:
+                radial-gradient(60% 50% at 85% 0%, rgba(233, 195, 74, 0.1) 0%, transparent 60%),
+                radial-gradient(50% 40% at 10% 100%, rgba(201, 162, 39, 0.08) 0%, transparent 60%),
+                var(--bg);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content .eyebrow {
+            display: block;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-content h1 {
+            color: var(--cream) !important;
+            text-shadow: 0 0 30px rgba(233, 195, 74, 0.18) !important;
+            font-size: clamp(2.7rem, 7.2vw, 4.8rem) !important;
+            font-weight: 500 !important;
+            letter-spacing: -0.01em !important;
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            background: linear-gradient(120deg, var(--gold-soft), var(--gold-bright));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content .sub {
+            color: var(--cream-soft) !important;
+            font-family: 'Manrope', sans-serif;
+            letter-spacing: 0.02em !important;
+            font-weight: 400 !important;
+            font-size: 1.08rem !important;
+            max-width: 560px;
+            margin: 1.2rem auto 0 !important;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.4rem;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(233, 195, 74, 0.2), transparent 70%);
+            filter: blur(2px);
+            animation: float 9s ease-in-out infinite;
+        }
+
+        .hero-orb.o1 {
+            width: 220px;
+            height: 220px;
+            top: 6%;
+            right: 6%;
+            animation-delay: 0s;
+        }
+
+        .hero-orb.o2 {
+            width: 140px;
+            height: 140px;
+            bottom: 4%;
+            left: 4%;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.16), transparent 70%);
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        /* ===== STAT BAR ===== */
+        .stat-bar {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 2.2rem 0;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-item .stat-value {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+            color: var(--gold-soft);
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cream-dim);
+            margin-top: 0.35rem;
+        }
+
+        @media (max-width: 760px) {
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== SECTION SHELL ===== */
+        .section {
+            padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+        }
+
+        .section-dark {
+            background: var(--bg-deep);
+            color: rgba(248, 244, 232, 0.9);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-dark h2,
+        .section-dark h3 {
+            color: var(--cream);
+        }
+
+        .section-dark p {
+            color: var(--cream-soft);
+        }
+
+        .section-head {
+            max-width: 640px;
+            margin: 0 auto 3.2rem;
+            text-align: center;
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+            margin-top: 0.7rem;
+        }
+
+        .section-head p {
+            margin-top: 1rem;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2.5rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .about-copy p {
+            line-height: 1.85;
+            font-size: 1.02rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .about-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-visual {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--bg-alt), var(--bg));
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+        }
+
+        .about-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: 1.4rem;
+            left: 1.4rem;
+            right: 1.4rem;
+            background: rgba(20, 17, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-badge .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(233, 195, 74, 0.6);
+        }
+
+        .about-badge span {
+            font-size: 0.85rem;
+            color: var(--cream-soft);
+            font-weight: 500;
+        }
+
+        @media (max-width: 820px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-visual {
+                order: -1;
+                max-width: 420px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ===== SPOTLIGHT ===== */
+        .spotlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2.5rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .spotlight.reverse .spotlight-media {
+            order: 2;
+        }
+        .spotlight.reverse .spotlight-copy {
+            order: 1;
+        }
+
+        .spotlight-media {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 5/4;
+            background: linear-gradient(160deg, var(--bg-alt), var(--bg));
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 70px -25px rgba(0, 0, 0, 0.7);
+        }
+
+        .spotlight-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.9s var(--ease);
+        }
+
+        .spotlight-media:hover img {
+            transform: scale(1.05);
+        }
+
+        .spotlight-copy h3 {
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            margin: 0.6rem 0 1rem;
+        }
+
+        .spotlight-copy p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .spotlight+.spotlight {
+            margin-top: clamp(3.5rem, 8vw, 6rem);
+        }
+
+        @media (max-width: 820px) {
+            .spotlight,
+            .spotlight.reverse {
+                grid-template-columns: 1fr;
+            }
+            .spotlight.reverse .spotlight-media,
+            .spotlight.reverse .spotlight-copy {
+                order: initial;
+            }
+            .spotlight-media {
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ===== PRODUCTS GRID ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            will-change: transform;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.75), 0 0 40px -12px rgba(201, 162, 39, 0.25);
+            border-color: rgba(201, 162, 39, 0.45);
+        }
+
+        .product-media {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--bg-alt);
+        }
+
+        .product-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--ease);
+            will-change: transform;
+        }
+
+        .product-card:hover .product-media img {
+            transform: scale(1.08);
+        }
+
+        .product-media::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transform: skewX(-18deg);
+            transition: left 0.85s var(--ease);
+            pointer-events: none;
+        }
+
+        .product-card:hover .product-media::after {
+            left: 130%;
+        }
+
+        .product-body {
+            padding: 1.4rem 1.5rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-body h3 {
+            font-size: 1.18rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .product-body p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-order {
+            align-self: flex-start;
+            font-size: 0.82rem;
+            padding: 0.7rem 1.3rem;
+            transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), color 0.4s var(--ease);
+        }
+
+        .product-card:hover .product-order {
+            transform: translateY(-3px);
+            border-color: var(--gold);
+            color: var(--gold-soft);
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 130px;
+            gap: 1.1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(5, 4, 3, 0.85) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item span {
+            position: absolute;
+            left: 0.9rem;
+            bottom: 0.8rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--cream);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .gallery-item:hover span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item.g1 {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .gallery-item.g4 {
+            grid-column: span 2;
+        }
+        .gallery-item.g6 {
+            grid-row: span 2;
+        }
+
+        @media (max-width: 820px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+            }
+            .gallery-item.g1 {
+                grid-column: span 2;
+            }
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-overlay .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.4s var(--ease);
+        }
+
+        .lightbox-overlay.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-close {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .lightbox-close:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 640px) {
+            .lightbox-close {
+                top: 16px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ===== WHY CHOOSE ===== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+        }
+
+        .why-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2rem 1.7rem;
+            border: 1px solid var(--line);
+            transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+        }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.6);
+        }
+
+        .why-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 162, 39, 0.14);
+            color: var(--gold-soft);
+            margin-bottom: 1.1rem;
+        }
+
+        .why-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .why-card h3 {
+            font-size: 1.08rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-card p {
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 820px) {
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 1.9rem 1.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold-soft);
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+        }
+
+        .testimonial-card p {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            color: var(--cream);
+            font-size: 1.02rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-name {
+            font-size: 0.85rem;
+            color: var(--cream-dim);
+        }
+
+
+        @media (max-width: 820px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== BRAND PROMISE ===== */
+        .promise-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .promise-wrap .eyebrow {
+            color: var(--gold-soft);
+        }
+
+        .promise-quote {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+            line-height: 1.5;
+            color: var(--cream);
+            margin: 1.2rem 0 2rem;
+        }
+
+        .promise-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem 1rem;
+            font-size: 0.88rem;
+            color: var(--cream-soft);
+        }
+
+        .promise-list li {
+            border: 1px solid var(--line);
+            padding: 0.55rem 1.1rem;
+            border-radius: 999px;
+        }
+
+        /* ===== CONTACT FORM ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: clamp(2.2rem, 5vw, 4rem);
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .contact-list li {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contact-list li:first-child {
+            padding-top: 0;
+        }
+
+        .contact-list strong {
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+        }
+
+        .contact-list span {
+            font-size: 0.98rem;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: clamp(1.6rem, 4vw, 2.4rem);
+        }
+
+        .form-row {
+            margin-bottom: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-row label {
+            font-size: 0.8rem;
+            color: var(--cream-soft);
+            letter-spacing: 0.03em;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            background: #100D08;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            color: var(--cream);
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-row input::placeholder,
+        .form-row textarea::placeholder {
+            color: var(--cream-dim);
+        }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.18);
+        }
+
+        .form-row input:focus-visible,
+        .form-row select:focus-visible,
+        .form-row textarea:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 2px;
+        }
+
+        .form-row select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23EAD289' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            cursor: pointer;
+        }
+
+        .form-row textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-submit {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .form-note {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--cream-dim);
+            text-align: center;
+        }
+
+        @media (max-width: 820px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.4rem 0.2rem;
+            font-family: 'Fraunces', serif;
+            font-size: 1.08rem;
+            color: var(--cream);
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .faq-plus {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1.5px solid var(--line);
+            position: relative;
+            transition: transform 0.35s var(--ease), border-color 0.35s ease;
+        }
+
+        .faq-plus::before,
+        .faq-plus::after {
+            content: '';
+            position: absolute;
+            background: var(--cream);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .faq-plus::before {
+            width: 10px;
+            height: 1.4px;
+        }
+
+        .faq-plus::after {
+            width: 1.4px;
+            height: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-item[open] .faq-plus {
+            transform: rotate(45deg);
+            border-color: var(--gold);
+        }
+
+        .faq-item p {
+            font-size: 0.96rem;
+            line-height: 1.75;
+            padding: 0 0.2rem 1.5rem;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background:
+                radial-gradient(70% 100% at 50% 0%, rgba(233, 195, 74, 0.14), transparent 60%),
+                linear-gradient(160deg, var(--bg-deep), var(--bg-alt));
+            border: 1px solid var(--line);
+            color: var(--cream);
+            text-align: center;
+            border-radius: 28px;
+            padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 6vw, 4rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta h2 {
+            color: var(--cream);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+        }
+
+        .final-cta p {
+            color: var(--cream-soft);
+            max-width: 520px;
+            margin: 1.1rem auto 2.2rem;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-deep);
+            color: var(--cream-dim);
+            padding: 3.5rem 0 2rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .footer-brand .nav-logo {
+            color: var(--gold-soft);
+        }
+
+        .footer-brand p {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--cream-dim);
+        }
+
+        .footer-cols {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h4 {
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-col a,
+        .footer-col span {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.65rem;
+            color: var(--cream-dim);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-soft);
+        }
+
+        .footer-col a[href^="tel:"]:hover,
+        .footer-col a[href^="mailto:"]:hover {
+            color: var(--gold-soft);
+        }
+
+        .footer-bottom {
+            padding-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--cream-dim);
+        }
+
+        /* ===== WHATSAPP FAB ===== */
+        .wa-fab {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 50;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 14px 34px rgba(201, 162, 39, 0.45);
+            transition: transform 0.35s var(--ease);
+        }
+
+        .wa-fab:hover {
+            transform: scale(1.08);
+        }
+
+        .wa-fab:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
+        }
+
+        .wa-fab svg {
+            width: 26px;
+            height: 26px;
+            color: #14110B;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== INTRO OVERLAY ===== -->
+    <section id="intro" aria-hidden="true">
+        <div class="wrapper">
+            <div class="strand"></div>
+            <div class="glow"></div>
+        </div>
+        <div class="flash"></div>
+    </section>
+
+    <!-- ===== MAIN APP ===== -->
+    <main id="app">
+        <div id="site">
+
+            <!-- Scroll Progress Bar -->
+            <div id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+            <!-- ============ NAVIGATION ============ -->
+            <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+                <div class="nav-inner">
+                    <a class="nav-logo" href="#top" aria-label="Big Wura Hair Care - Home">Big Wura</a>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#why">Why Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                    <div class="nav-cta">
+                        <a class="btn btn-secondary" href="#about">Learn More</a>
+                        <a class="btn btn-primary" href="https://wa.me/2348077758240?text=Hi%20Big%20Wura%20Hair%20Care%2C%20I%27d%20like%20to%20know%20more%20about%20your%20products" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">Message Us</a>
+                    </div>
+                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- ============ HERO ============ -->
+            <section id="top" class="hero-wrap">
+                <span class="hero-orb o1" aria-hidden="true"></span>
+                <span class="hero-orb o2" aria-hidden="true"></span>
+                <div class="hero-content" id="heroContent">
+                    <span class="eyebrow">Big Wura Hair Care</span>
+                    <h1>Care For Every Strand. <em>Confidence In </em>Every Style.</h1>
+                    <p class="sub">Every great hair journey begins with proper care. We supply the products, tools, and accessories that turn everyday hair care into something you actually look forward to — for natural hair and wigs alike.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="https://wa.me/2348077758240?text=Hi%20Big%20Wura%20Hair%20Care%2C%20I%27d%20like%20to%20place%20an%20order" target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.03.25-3.45-.72-2.9-1.17-4.75-4.13-4.9-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.17.01.42-.06.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.6 2 1.1.98 2.03 1.29 2.31 1.43.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.66.79 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/>
+                            </svg>
+                            Message on WhatsApp
+                        </a>
+                        <a class="btn btn-secondary" href="#about">Learn More</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ STAT BAR ============ -->
+            <aside class="stat-bar" aria-label="Key business statistics">
+                <div class="container stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">1–2 Days</div>
+                        <div class="stat-label">Average Delivery</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Lagos &amp; Ogun</div>
+                        <div class="stat-label">Areas We Serve</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Founder-Tested</div>
+                        <div class="stat-label">Every Product</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">WhatsApp-First</div>
+                        <div class="stat-label">Real Human Support</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ============ ABOUT ============ -->
+            <section class="section" id="about">
+                <div class="container about-grid">
+                    <div class="about-copy reveal-up">
+                        <span class="eyebrow">Our Story</span>
+                        <h2 style="font-size:clamp(1.9rem,4vw,2.7rem); margin:0.7rem 0 1.3rem;">Beauty starts from healthy hair.</h2>
+                        <p>Big Wura Hair Care began in early 2026 with one simple belief: that beauty starts from healthy hair. Our founder built this business to become financially independent while helping people around her appreciate what properly cared-for hair can do for how they feel.</p>
+                        <p>Whether you wear your hair natural or love a good wig install, we believe every strand deserves attention. That's why we source and stock only products we'd confidently use ourselves — shampoos, conditioners, tools, and accessories that actually do what they promise.</p>
+                        <p>What started small has grown into a trusted name for students, young professionals, and hair lovers across Lagos and Ogun State — one satisfied customer, and one referral, at a time.</p>
+                    </div>
+                    <div class="about-visual reveal-up">
+                        <img src="assets/images/image2.png" alt="Big Wura leave-in conditioner, part of the founder's healthy hair routine" loading="lazy" decoding="async" width="400" height="500">
+                        <div class="about-badge">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>Trusted by hair lovers across Lagos &amp; Ogun State</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ PRODUCT SPOTLIGHTS ============ -->
+            <section class="section section-alt" id="products">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">Featured Products</span>
+                        <h2>Everything your strands need</h2>
+                        <p>Six essentials our customers reorder again and again — for wash day, protective styling, and the nights in between.</p>
+                    </div>
+
+                    <!-- Spotlight 1 -->
+                    <div class="spotlight reveal-up">
+                        <div class="spotlight-media">
+                            <img src="assets/images/image1.png" alt="Big Wura Hydrating Hair Shampoo" loading="lazy" decoding="async" width="600" height="480">
+                        </div>
+                        <div class="spotlight-copy">
+                            <span class="eyebrow">01 · Wash Day</span>
+                            <h3>Hydrating Hair Shampoo</h3>
+                            <p>A gentle, residue-free cleanse that lifts buildup without stripping your hair's natural moisture — the foundation of every good wash day.</p>
+                            <a class="btn btn-secondary" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Hydrating%20Hair%20Shampoo" target="_blank" rel="noopener noreferrer" aria-label="Order Hydrating Hair Shampoo on WhatsApp">Order on WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Spotlight 2 -->
+                    <div class="spotlight reverse reveal-up">
+                        <div class="spotlight-media">
+                            <img src="assets/images/image4.png" alt="Big Wura Dreadlock Styling Foam" loading="lazy" decoding="async" width="600" height="480">
+                        </div>
+                        <div class="spotlight-copy">
+                            <span class="eyebrow">02 · Styling</span>
+                            <h3>Dreadlock Styling Foam</h3>
+                            <p>A light-hold foam that locks in shine and definition for dreadlocks and twists — no flaking, no stiffness, just clean hold that lasts.</p>
+                            <a class="btn btn-secondary" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Dreadlock%20Styling%20Foam" target="_blank" rel="noopener noreferrer" aria-label="Order Dreadlock Styling Foam on WhatsApp">Order on WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div style="margin-top: clamp(3.5rem, 8vw, 6rem);">
+                        <div class="product-grid">
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image1.png" alt="Big Wura Hydrating Hair Shampoo" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Hydrating Hair Shampoo</h3>
+                                    <p>Clears buildup, protects moisture, sets up every style that follows.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Hydrating%20Hair%20Shampoo" target="_blank" rel="noopener noreferrer" aria-label="Order Hydrating Hair Shampoo on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image2.png" alt="Big Wura Leave-In Conditioner" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Leave-In Conditioner</h3>
+                                    <p>Lightweight, all-day hydration — ideal under wigs or on natural hair.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Leave-In%20Conditioner" target="_blank" rel="noopener noreferrer" aria-label="Order Leave-In Conditioner on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image3.png" alt="Big Wura Professional Comb Set" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Professional Comb Set</h3>
+                                    <p>Precision-cut for sectioning and detangling, without the snapping.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Professional%20Comb%20Set" target="_blank" rel="noopener noreferrer" aria-label="Order Professional Comb Set on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image4.png" alt="Big Wura Dreadlock Styling Foam" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Dreadlock Styling Foam</h3>
+                                    <p>Light-hold, high-shine definition for locks and twists.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Dreadlock%20Styling%20Foam" target="_blank" rel="noopener noreferrer" aria-label="Order Dreadlock Styling Foam on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image5.png" alt="Big Wura Satin Hair Bonnets" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Satin Hair Bonnets</h3>
+                                    <p>Friction-free, wig-safe protection for your style overnight.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Satin%20Hair%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Satin Hair Bonnet on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image6.png" alt="Big Wura Electric Hot Comb" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Electric Hot Comb</h3>
+                                    <p>Salon-grade press-outs at home, no salon wait required.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Electric%20Hot%20Comb" target="_blank" rel="noopener noreferrer" aria-label="Order Electric Hot Comb on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ GALLERY ============ -->
+            <section class="section" id="gallery">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">Our Collection</span>
+                        <h2>A closer look</h2>
+                        <p>Every product, in one gallery.</p>
+                    </div>
+                    <div class="gallery-grid reveal-up">
+                        <div class="gallery-item g1" data-image="assets/images/image1.png" data-alt="Hydrating Hair Shampoo">
+                            <img src="assets/images/image1.png" alt="Hydrating Hair Shampoo" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Hydrating Hair Shampoo</span>
+                        </div>
+                        <div class="gallery-item g2" data-image="assets/images/image2.png" data-alt="Leave-In Conditioner">
+                            <img src="assets/images/image2.png" alt="Leave-In Conditioner" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Leave-In Conditioner</span>
+                        </div>
+                        <div class="gallery-item g3" data-image="assets/images/image5.png" data-alt="Satin Hair Bonnets">
+                            <img src="assets/images/image5.png" alt="Satin Hair Bonnets" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Satin Hair Bonnets</span>
+                        </div>
+                        <div class="gallery-item g4" data-image="assets/images/image6.png" data-alt="Electric Hot Comb">
+                            <img src="assets/images/image6.png" alt="Electric Hot Comb" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Electric Hot Comb</span>
+                        </div>
+                        <div class="gallery-item g5" data-image="assets/images/image3.png" data-alt="Professional Comb Set">
+                            <img src="assets/images/image3.png" alt="Professional Comb Set" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Professional Comb Set</span>
+                        </div>
+                        <div class="gallery-item g6" data-image="assets/images/image4.png" data-alt="Dreadlock Styling Foam">
+                            <img src="assets/images/image4.png" alt="Dreadlock Styling Foam" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Dreadlock Styling Foam</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ WHY CHOOSE ============ -->
+            <section class="section section-alt" id="why">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">Why Choose Big Wura</span>
+                        <h2>Trusted, from cart to doorstep</h2>
+                        <p>We're not just selling products — we're building a brand you'll want to recommend to a friend.</p>
+                    </div>
+                    <div class="why-grid">
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+                            </div>
+                            <h3>Premium quality</h3>
+                            <p>Every product is chosen because we'd use it ourselves — no shortcuts on what touches your hair.</p>
+                        </div>
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12l5 5L20 6"/></svg>
+                            </div>
+                            <h3>Trusted by customers</h3>
+                            <p>Built on repeat orders and referrals from students and hair lovers across Lagos &amp; Ogun.</p>
+                        </div>
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h13M16 5l6 7-6 7"/></svg>
+                            </div>
+                            <h3>Fast delivery</h3>
+                            <p>Usually within 1–2 days, with free delivery inside school areas and nearby Lagos pickup.</p>
+                        </div>
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+                            </div>
+                            <h3>Professional packaging</h3>
+                            <p>Your order arrives neat, protected, and looking as good as what's inside.</p>
+                        </div>
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            </div>
+                            <h3>Affordable pricing</h3>
+                            <p>Premium hair care that doesn't stretch a student or young professional's budget.</p>
+                        </div>
+                        <div class="why-card reveal-up">
+                            <div class="why-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <h3>Real customer care</h3>
+                            <p>A message away on WhatsApp — real answers, real help choosing what's right for your hair.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ TESTIMONIALS ============ -->
+            <section class="section" id="testimonials">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">What Customers Say</span>
+                        <h2>Real hair, real results</h2>
+                        <p>A few words from people who've tried us — swap these for your own customer quotes whenever you're ready.</p>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card reveal-up">
+                            <div class="stars" aria-hidden="true">★★★★★</div>
+                            <p>"My hair genuinely feels softer and easier to manage since I switched to the leave-in conditioner."</p>
+                            <div class="testimonial-name"> Abigael, Lagos</div>
+                        </div>
+                        <div class="testimonial-card reveal-up">
+                            <div class="stars" aria-hidden="true">★★★★★</div>
+                            <p>"Ordered on WhatsApp in the evening, had it delivered the next day. Smooth from start to finish."</p>
+                            <div class="testimonial-name"> Ameerah, Osun</div>
+                        </div>
+                        <div class="testimonial-card reveal-up">
+                            <div class="stars" aria-hidden="true">★★★★★</div>
+                            <p>"Packaging alone made it feel premium. The products backed it up too."</p>
+                            <div class="testimonial-name"> Rachael, Ogun</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ BRAND PROMISE ============ -->
+            <section class="section section-dark">
+                <div class="container promise-wrap reveal-up">
+                    <span class="eyebrow">Our Promise</span>
+                    <p class="promise-quote">"From the product in your hands to the way we treat you on WhatsApp — we promise you the very best, every single time."</p>
+                    <div class="strand-divider" style="margin-top:0;"></div>
+                    <ul class="promise-list">
+                        <li>Premium quality products</li>
+                        <li>Excellent packaging</li>
+                        <li>Reliable delivery</li>
+                        <li>Outstanding customer service</li>
+                        <li>Products you'll want to recommend</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ============ CONTACT FORM ============ -->
+            <section class="section" id="contact">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">Get In Touch</span>
+                        <h2>Let's talk about your hair</h2>
+                        <p>Fill in a few details below — it opens WhatsApp with everything pre-filled, so we can pick up the conversation right away.</p>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-info reveal-up">
+                            <h3>Reach us directly</h3>
+                            <ul class="contact-list">
+                                <li>
+                                    <strong>Phone / WhatsApp</strong>
+                                    <span><a href="tel:+2348077758240" style="color:inherit;text-decoration:none;">08077758240</a></span>
+                                </li>
+                                <li>
+                                    <strong>Delivery areas</strong>
+                                    <span>Lagos &amp; Ogun State — free within school areas</span>
+                                </li>
+                                <li>
+                                    <strong>Delivery time</strong>
+                                    <span>Usually 1–2 days</span>
+                                </li>
+                                <li>
+                                    <strong>Payments</strong>
+                                    <span>Opay · Moniepoint</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <form class="contact-form reveal-up" id="contactForm" novalidate aria-label="Contact form">
+                            <div class="form-row">
+                                <label for="cf-name">Full name</label>
+                                <input id="cf-name" name="name" type="text" placeholder="e.g. Amara Johnson" required autocomplete="name">
+                            </div>
+                            <div class="form-row">
+                                <label for="cf-phone">Phone / WhatsApp number</label>
+                                <input id="cf-phone" name="phone" type="tel" placeholder="e.g. 0801 234 5678" required autocomplete="tel" inputmode="tel">
+                            </div>
+                            <div class="form-row">
+                                <label for="cf-interest">I'm interested in</label>
+                                <select id="cf-interest" name="interest" autocomplete="off">
+                                    <option>Hair Shampoo</option>
+                                    <option>Leave-In Conditioner</option>
+                                    <option>Professional Comb Set</option>
+                                    <option>Dreadlock Styling Foam</option>
+                                    <option>Satin Hair Bonnets</option>
+                                    <option>Electric Hot Comb</option>
+                                    <option>Something else / not sure yet</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="cf-message">Message (optional)</label>
+                                <textarea id="cf-message" name="message" placeholder="Tell us a bit about what your hair needs..." autocomplete="off"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary form-submit" id="formSubmit">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.03.25-3.45-.72-2.9-1.17-4.75-4.13-4.9-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.17.01.42-.06.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.6 2 1.1.98 2.03 1.29 2.31 1.43.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.66.79 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/>
+                                </svg>
+                                <span id="submitText">Send via WhatsApp</span>
+                            </button>
+                            <p class="form-note">This opens WhatsApp with your details filled in. Nothing is stored on our site.</p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ FAQ ============ -->
+            <section class="section section-alt" id="faq">
+                <div class="container">
+                    <div class="section-head reveal-up">
+                        <div class="strand-divider"></div>
+                        <span class="eyebrow">FAQ</span>
+                        <h2>Good to know</h2>
+                    </div>
+                    <div class="faq-list reveal-up">
+                        <details class="faq-item" open>
+                            <summary>How do I order?<span class="faq-plus"></span></summary>
+                            <p>Simply message us on WhatsApp, or use the contact form above, with the product(s) you're interested in, and we'll guide you through sizes, pricing, and payment.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Where do you deliver?<span class="faq-plus"></span></summary>
+                            <p>We deliver across Lagos and Ogun State, with free delivery within school areas or for pickup near Lagos.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>How long does delivery take?<span class="faq-plus"></span></summary>
+                            <p>Orders are usually delivered within 1–2 days. Delivery fees depend on your location and will be confirmed before you pay.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>How do I pay?<span class="faq-plus"></span></summary>
+                            <p>We accept payments via Opay and Moniepoint. Payment details are shared once your order is confirmed on WhatsApp.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Do you sell both hair products and accessories?<span class="faq-plus"></span></summary>
+                            <p>Yes — from shampoos and conditioners to combs, bonnets, styling foam, and hot combs, we stock what your hair routine actually needs.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Can I order through WhatsApp?<span class="faq-plus"></span></summary>
+                            <p>Yes, WhatsApp is our main channel for orders and questions — tap any "Message Us" button or use the contact form to start a chat.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ FINAL CTA ============ -->
+            <section class="section">
+                <div class="container">
+                    <div class="final-cta reveal-up">
+                        <span class="eyebrow" style="color:var(--gold-soft);">Ready When You Are</span>
+                        <h2>Let's get your hair the care it deserves.</h2>
+                        <p>Message us on WhatsApp now — tell us what your hair needs, and we'll help you find the right products, sorted and on the way.</p>
+                        <a class="btn btn-gold" href="https://wa.me/2348077758240?text=Hi%20Big%20Wura%20Hair%20Care%2C%20I%27d%20like%20to%20start%20an%20order" target="_blank" rel="noopener noreferrer" aria-label="Start your order on WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.03.25-3.45-.72-2.9-1.17-4.75-4.13-4.9-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.17.01.42-.06.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.6 2 1.1.98 2.03 1.29 2.31 1.43.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.66.79 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/>
+                            </svg>
+                            Message on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ FOOTER ============ -->
+            <footer>
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-brand">
+                            <a class="nav-logo" href="#top">Big Wura</a>
+                            <p>Care For Every Strand ✨</p>
+                            <p style="margin-top:1rem;">
+                                <a href="https://wa.me/2348077758240" target="_blank" rel="noopener noreferrer">wa.me/2348077758240</a>
+                            </p>
+                        </div>
+                        <div class="footer-cols">
+                            <div class="footer-col">
+                                <h4>Quick Links</h4>
+                                <a href="#about">About</a>
+                                <a href="#products">Products</a>
+                                <a href="#gallery">Gallery</a>
+                                <a href="#why">Why Us</a>
+                                <a href="#contact">Contact</a>
+                                <a href="#faq">FAQ</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Get In Touch</h4>
+                                <span><a href="tel:+2348077758240" style="color:inherit;text-decoration:none;">08077758240</a></span>
+                                <a href="https://wa.me/2348077758240" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Delivery</h4>
+                                <span>Lagos &amp; Ogun State</span>
+                                <span>Free within school areas</span>
+                                <span>Usually 1–2 days</span>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Hours</h4>
+                                <span>Mon–Sat: 9am – 7pm</span>
+                                <span>Sun: Message us anytime</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <span id="copyrightYear">© 2026 Big Wura Hair Care. All rights reserved.</span>
+                        <span>Opay · Moniepoint accepted</span>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- ===== WHATSAPP FAB ===== -->
+            <a class="wa-fab" href="https://wa.me/2348077758240?text=Hi%20Big%20Wura%20Hair%20Care" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.03.25-3.45-.72-2.9-1.17-4.75-4.13-4.9-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.17.01.42-.06.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.6 2 1.1.98 2.03 1.29 2.31 1.43.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.66.79 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/>
+                </svg>
+            </a>
+
+            <!-- ===== LIGHTBOX ===== -->
+            <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+                <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">✕</button>
+                <img class="lightbox-content" id="lightboxImage" src="" alt="">
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        /**
+         * Big Wura Hair Care - Main Application
+         * Production-ready JavaScript with constants, clean event handling, and accessibility
+         */
+
+        (function() {
+            'use strict';
+
+            // ===== CONSTANTS =====
+            const CONFIG = {
+                PHONE_NUMBER: '2348077758240',
+                BUSINESS_NAME: 'Big Wura Hair Care',
+                INTRO_TIMEOUT: 8000,
+                SCROLL_THRESHOLD: 0.15,
+                SCROLL_OFFSET: -60,
+                LIGHTBOX_ANIMATION_DURATION: 400
+            };
+
+            // ===== DOM REFERENCES =====
+            const $ = (selector) => document.querySelector(selector);
+            const $$ = (selector) => document.querySelectorAll(selector);
+
+            const dom = {
+                intro: $('#intro'),
+                glow: $('#intro .glow'),
+                strand: $('#intro .strand'),
+                flash: $('#intro .flash'),
+                wrapper: $('#intro .wrapper'),
+                app: $('#app'),
+                heroContent: $('#heroContent'),
+                progress: $('#scrollProgress'),
+                navToggle: $('#navToggle'),
+                siteNav: $('#siteNav'),
+                navLinks: $$('#navLinks a'),
+                contactForm: $('#contactForm'),
+                formSubmit: $('#formSubmit'),
+                submitText: $('#submitText'),
+                cfName: $('#cf-name'),
+                cfPhone: $('#cf-phone'),
+                cfInterest: $('#cf-interest'),
+                cfMessage: $('#cf-message'),
+                lightbox: $('#lightbox'),
+                lightboxImage: $('#lightboxImage'),
+                lightboxClose: $('#lightboxClose'),
+                galleryItems: $$('.gallery-item'),
+                copyrightYear: $('#copyrightYear')
+            };
+
+            // ===== INTRO ANIMATION =====
+            function initIntro() {
+                if (!dom.intro || !dom.glow || !dom.strand || !dom.flash || !dom.app || !dom.heroContent) {
+                    if (dom.intro) dom.intro.style.display = 'none';
+                    if (dom.app) {
+                        dom.app.classList.add('reveal');
+                        if (dom.heroContent) dom.heroContent.classList.add('visible');
+                    }
+                    return;
+                }
+
+                dom.glow.addEventListener('animationend', function handleGlow(event) {
+                    if (event.animationName !== 'travel') return;
+
+                    dom.glow.classList.add('pulse');
+
+                    setTimeout(() => {
+                        dom.strand.classList.add('hide');
+                        dom.glow.classList.replace('pulse', 'explode');
+                        dom.flash.classList.add('fire');
+
+                        setTimeout(() => {
+                            dom.intro.classList.add('fade-out');
+                            dom.app.classList.add('reveal');
+
+                            setTimeout(() => {
+                                dom.heroContent.classList.add('visible');
+                            }, 30);
+                        }, 1000);
+                    }, 2600);
+                });
+
+                // Fallback: if intro doesn't complete, force reveal
+                setTimeout(() => {
+                    if (dom.intro && !dom.intro.classList.contains('fade-out') &&
+                        dom.app && !dom.app.classList.contains('reveal')) {
+                        dom.strand.classList.add('hide');
+                        dom.glow.classList.remove('pulse');
+                        dom.glow.classList.add('explode');
+                        dom.flash.classList.add('fire');
+
+                        setTimeout(() => {
+                            dom.intro.classList.add('fade-out');
+                            dom.app.classList.add('reveal');
+                            if (dom.heroContent) dom.heroContent.classList.add('visible');
+                        }, 1000);
+                    }
+                }, CONFIG.INTRO_TIMEOUT);
+            }
+
+            // ===== SCROLL PROGRESS =====
+            function initScrollProgress() {
+                function updateProgress() {
+                    const h = document.documentElement;
+                    const scrolled = h.scrollTop;
+                    const height = h.scrollHeight - h.clientHeight;
+                    if (dom.progress && height > 0) {
+                        const percent = (scrolled / height) * 100;
+                        dom.progress.style.width = percent + '%';
+                        dom.progress.setAttribute('aria-valuenow', Math.round(percent));
+                    }
+                }
+
+                window.addEventListener('scroll', updateProgress, { passive: true });
+                updateProgress();
+            }
+
+            // ===== SCROLL REVEAL =====
+            function initScrollReveal() {
+                const revealEls = document.querySelectorAll('.reveal-up, .promise-wrap');
+
+                if ('IntersectionObserver' in window) {
+                    const io = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('in-view');
+                                io.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: CONFIG.SCROLL_THRESHOLD,
+                        rootMargin: '0px 0px ' + CONFIG.SCROLL_OFFSET + 'px 0px'
+                    });
+
+                    revealEls.forEach(el => io.observe(el));
+                } else {
+                    revealEls.forEach(el => el.classList.add('in-view'));
+                }
+            }
+
+            // ===== NAVIGATION =====
+            function initNavigation() {
+                // Mobile toggle
+                if (dom.navToggle && dom.siteNav) {
+                    dom.navToggle.addEventListener('click', function() {
+                        dom.siteNav.classList.toggle('open');
+                    });
+                }
+
+                // Close mobile nav on link click
+                dom.navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (dom.siteNav) dom.siteNav.classList.remove('open');
+                    });
+                });
+
+                // Active section highlighting
+                const sections = $$('section[id]');
+                if (sections.length > 0) {
+                    const navLinks = dom.navLinks;
+
+                    function updateActiveSection() {
+                        const scrollPos = window.scrollY + 120;
+
+                        let currentSection = null;
+                        sections.forEach(section => {
+                            const rect = section.getBoundingClientRect();
+                            const top = rect.top + window.scrollY;
+                            const bottom = top + rect.height;
+
+                            if (scrollPos >= top && scrollPos < bottom) {
+                                currentSection = section.id;
+                            }
+                        });
+
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + currentSection) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+
+                    window.addEventListener('scroll', updateActiveSection, { passive: true });
+                    updateActiveSection();
+                }
+
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(a => {
+                    a.addEventListener('click', function(e) {
+                        const id = this.getAttribute('href');
+                        if (id && id.length > 1) {
+                            const target = document.querySelector(id);
+                            if (target) {
+                                e.preventDefault();
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    });
+                });
+            }
+
+            // ===== CONTACT FORM =====
+            function initContactForm() {
+                if (!dom.contactForm) return;
+
+                dom.contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = dom.cfName.value.trim();
+                    const phone = dom.cfPhone.value.trim();
+                    const interest = dom.cfInterest.value;
+                    const message = dom.cfMessage.value.trim();
+
+                    // Validate
+                    if (!name || name.length < 2) {
+                        dom.cfName.focus();
+                        dom.cfName.style.borderColor = '#c0392b';
+                        setTimeout(() => { dom.cfName.style.borderColor = ''; }, 2000);
+                        return;
+                    }
+
+                    if (!phone || phone.length < 8) {
+                        dom.cfPhone.focus();
+                        dom.cfPhone.style.borderColor = '#c0392b';
+                        setTimeout(() => { dom.cfPhone.style.borderColor = ''; }, 2000);
+                        return;
+                    }
+
+                    // Disable button
+                    const submitBtn = dom.formSubmit;
+                    const submitText = dom.submitText;
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Opening WhatsApp...';
+
+                    // Build message
+                    let text = `Hi ${CONFIG.BUSINESS_NAME}, my name is ${name}.`;
+                    text += ` I'm interested in ${interest}.`;
+                    if (message) text += ` ${message}`;
+                    text += ` You can reach me on ${phone}.`;
+
+                    // Open WhatsApp
+                    const url = `https://wa.me/${CONFIG.PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+
+                    // Restore button after delay
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitText.textContent = 'Send via WhatsApp';
+                    }, 3000);
+
+                    // Reset form
+                    dom.contactForm.reset();
+                });
+            }
+
+            // ===== LIGHTBOX =====
+            function initLightbox() {
+                if (!dom.lightbox || !dom.lightboxImage || !dom.lightboxClose) return;
+
+                function openLightbox(src, alt) {
+                    dom.lightboxImage.src = src;
+                    dom.lightboxImage.alt = alt || 'Enlarged image';
+                    dom.lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    dom.lightbox.focus();
+                }
+
+                function closeLightbox() {
+                    dom.lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                // Gallery click
+                dom.galleryItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const src = this.dataset.image;
+                        const alt = this.dataset.alt || 'Gallery image';
+                        if (src) openLightbox(src, alt);
+                    });
+
+                    // Keyboard accessibility
+                    item.setAttribute('role', 'button');
+                    item.setAttribute('tabindex', '0');
+                    item.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+                });
+
+                // Close handlers
+                dom.lightboxClose.addEventListener('click', closeLightbox);
+
+                dom.lightbox.addEventListener('click', function(e) {
+                    if (e.target === this) closeLightbox();
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && dom.lightbox.classList.contains('active')) {
+                        closeLightbox();
+                    }
+                });
+
+                // Focus trap
+                dom.lightbox.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        const focusable = dom.lightbox.querySelectorAll(
+                            'button, [tabindex="0"]');
+                        const first = focusable[0];
+                        const last = focusable[focusable.length - 1];
+
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
+                    }
+                });
+            }
+
+            // ===== FAQ ANIMATION =====
+            function initFaq() {
+                const details = $$('.faq-item');
+
+                details.forEach((detail, index) => {
+                    const summary = detail.querySelector('summary');
+                    if (!summary) return;
+
+                    // Set up animation on open/close
+                    detail.addEventListener('toggle', function() {
+                        const content = this.querySelector('p');
+                        if (!content) return;
+
+                        if (this.open) {
+                            // Opening animation
+                            content.style.maxHeight = '0';
+                            content.style.opacity = '0';
+                            content.style.overflow = 'hidden';
+                            content.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
+
+                            // Trigger reflow
+                            void content.offsetHeight;
+
+                            const fullHeight = content.scrollHeight;
+                            content.style.maxHeight = fullHeight + 'px';
+                            content.style.opacity = '1';
+
+                            setTimeout(() => {
+                                content.style.maxHeight = 'none';
+                                content.style.overflow = '';
+                                content.style.transition = '';
+                            }, 450);
+                        } else {
+                            // Closing animation
+                            const fullHeight = content.scrollHeight;
+                            content.style.maxHeight = fullHeight + 'px';
+                            content.style.opacity = '1';
+                            content.style.overflow = 'hidden';
+
+                            // Trigger reflow
+                            void content.offsetHeight;
+
+                            content.style.maxHeight = '0';
+                            content.style.opacity = '0';
+
+                            setTimeout(() => {
+                                content.style.maxHeight = '';
+                                content.style.opacity = '';
+                                content.style.overflow = '';
+                                content.style.transition = '';
+                            }, 450);
+                        }
+                    });
+
+                    // Keyboard accessibility
+                    summary.setAttribute('role', 'button');
+                });
+
+                // Set initial state for open FAQ
+                const firstFaq = document.querySelector('.faq-item[open]');
+                if (firstFaq) {
+                    const content = firstFaq.querySelector('p');
+                    if (content) {
+                        content.style.maxHeight = 'none';
+                        content.style.opacity = '1';
+                    }
+                }
+            }
+
+            // ===== DYNAMIC COPYRIGHT YEAR =====
+            function initCopyright() {
+                if (dom.copyrightYear) {
+                    const year = new Date().getFullYear();
+                    dom.copyrightYear.textContent = `© ${year} Big Wura Hair Care. All rights reserved.`;
+                }
+            }
+
+            // ===== PREFERS-REDUCED-MOTION =====
+            function checkReducedMotion() {
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                if (prefersReducedMotion.matches) {
+                    document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+                    document.documentElement.style.setProperty('--transition-duration', '0.01ms');
+                }
+
+                prefersReducedMotion.addEventListener('change', function(e) {
+                    if (e.matches) {
+                        document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+                        document.documentElement.style.setProperty('--transition-duration', '0.01ms');
+                    } else {
+                        document.documentElement.style.setProperty('--animation-duration', '');
+                        document.documentElement.style.setProperty('--transition-duration', '');
+                    }
+                });
+            }
+
+            // ===== INITIALIZE =====
+            function init() {
+                // Run in order of importance
+                initIntro();
+                initScrollProgress();
+                initScrollReveal();
+                initNavigation();
+                initContactForm();
+                initLightbox();
+                initFaq();
+                initCopyright();
+                checkReducedMotion();
+
+                // Log success
+                console.log('✅ Big Wura Hair Care — Production-ready');
+                console.log(`📱 Phone: +${CONFIG.PHONE_NUMBER}`);
+                console.log(`🏢 Business: ${CONFIG.BUSINESS_NAME}`);
+            }
+
+            // Run after DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
