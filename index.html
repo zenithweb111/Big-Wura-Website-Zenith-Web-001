@@ -854,6 +854,63 @@
             }
         }
 
+        /* ===== FOUNDER ===== */
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: clamp(2.5rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .founder-visual {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--bg-alt), var(--bg));
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+        }
+
+        .founder-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-copy h2 {
+            font-size: clamp(1.9rem, 4vw, 2.7rem);
+            margin: 0.7rem 0 1.3rem;
+        }
+
+        .founder-copy p {
+            line-height: 1.85;
+            font-size: 1.02rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .founder-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .founder-signature {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            color: var(--gold-soft);
+            font-size: 1.15rem;
+            margin-top: 1.4rem;
+        }
+
+        @media (max-width: 820px) {
+            .founder-grid {
+                grid-template-columns: 1fr;
+            }
+            .founder-visual {
+                max-width: 380px;
+                margin: 0 auto;
+            }
+        }
+
         /* ===== SPOTLIGHT ===== */
         .spotlight {
             display: grid;
@@ -1670,6 +1727,7 @@
                     <a class="nav-logo" href="#top" aria-label="Big Wura Hair Care - Home">Big Wura</a>
                     <ul class="nav-links" id="navLinks">
                         <li><a href="#about">About</a></li>
+                        <li><a href="#founder">Founder</a></li>
                         <li><a href="#products">Products</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#why">Why Us</a></li>
@@ -1750,14 +1808,31 @@
                 </div>
             </section>
 
+            <!-- ============ FOUNDER ============ -->
+            <section class="section section-alt" id="founder">
+                <div class="container founder-grid">
+                    <div class="founder-visual reveal-up">
+                        <img src="assets/images/founder.jpg" alt="Adediwura Bakare, founder of Big Wura Hair Care" loading="lazy" decoding="async" width="400" height="500">
+                    </div>
+                    <div class="founder-copy reveal-up">
+                        <span class="eyebrow">Meet the Founder</span>
+                        <h2>Adediwura Bakare, 19</h2>
+                        <p>Adediwura started Big Wura Hair Care in early 2026 with a clear goal: to build a business that would make her financially independent while helping people around her feel confident in their hair.</p>
+                        <p>At just 19, she personally tests every product before it reaches the shelf. From shampoos and conditioners to bonnets and styling tools, her standard is simple — if she wouldn't use it herself, it doesn't make the cut.</p>
+                        <p>Her vision is to grow Big Wura into a household name for premium, affordable hair care across Nigeria, one strand at a time.</p>
+                        <p class="founder-signature">— Adediwura Bakare, Founder</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- ============ PRODUCT SPOTLIGHTS ============ -->
-            <section class="section section-alt" id="products">
+            <section class="section" id="products">
                 <div class="container">
                     <div class="section-head reveal-up">
                         <div class="strand-divider"></div>
                         <span class="eyebrow">Featured Products</span>
                         <h2>Everything your strands need</h2>
-                        <p>Six essentials our customers reorder again and again — for wash day, protective styling, and the nights in between.</p>
+                        <p>Our full collection — from wash day essentials to protective accessories for every hair type.</p>
                     </div>
 
                     <!-- Spotlight 1 -->
@@ -1834,14 +1909,15 @@
                                 </div>
                             </article>
 
+                            <!-- GENERAL BONNET SHOWCASE -->
                             <article class="product-card reveal-up">
                                 <div class="product-media">
-                                    <img src="assets/images/image5.png" alt="Big Wura Satin Hair Bonnets" loading="lazy" decoding="async" width="400" height="400">
+                                    <img src="assets/images/image5.png" alt="Big Wura Satin Hair Bonnets – assorted colours" loading="lazy" decoding="async" width="400" height="400">
                                 </div>
                                 <div class="product-body">
                                     <h3>Satin Hair Bonnets</h3>
-                                    <p>Friction-free, wig-safe protection for your style overnight.</p>
-                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Satin%20Hair%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Satin Hair Bonnet on WhatsApp">Order on WhatsApp</a>
+                                    <p>Friction-free, wig-safe protection for your style overnight — available in four colours.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Satin%20Hair%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Satin Hair Bonnets on WhatsApp">Order on WhatsApp</a>
                                 </div>
                             </article>
 
@@ -1856,13 +1932,58 @@
                                 </div>
                             </article>
 
+                            <!-- INDIVIDUAL BONNET COLOURS -->
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image7.jpg" alt="Big Wura Satin Bonnet – Pink" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Satin Bonnet – Pink</h3>
+                                    <p>Soft pink satin bonnet for friction-free, wig-safe protection overnight.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Pink%20Satin%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Pink Satin Bonnet on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image8.jpg" alt="Big Wura Satin Bonnet – Purple" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Satin Bonnet – Purple</h3>
+                                    <p>Gentle purple satin with a smooth, breathable feel for restful nights.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Purple%20Satin%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Purple Satin Bonnet on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image9.jpg" alt="Big Wura Satin Bonnet – Brown" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Satin Bonnet – Brown</h3>
+                                    <p>Rich brown satin that keeps hair moisturised and frizz-free overnight.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Brown%20Satin%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Brown Satin Bonnet on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
+                            <article class="product-card reveal-up">
+                                <div class="product-media">
+                                    <img src="assets/images/image10.jpg" alt="Big Wura Satin Bonnet – Orange" loading="lazy" decoding="async" width="400" height="400">
+                                </div>
+                                <div class="product-body">
+                                    <h3>Satin Bonnet – Orange</h3>
+                                    <p>Vibrant orange satin bonnet with a secure, comfortable fit for nightly protection.</p>
+                                    <a class="btn btn-secondary product-order" href="https://wa.me/2348077758240?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Orange%20Satin%20Bonnet" target="_blank" rel="noopener noreferrer" aria-label="Order Orange Satin Bonnet on WhatsApp">Order on WhatsApp</a>
+                                </div>
+                            </article>
+
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ============ GALLERY ============ -->
-            <section class="section" id="gallery">
+            <section class="section section-alt" id="gallery">
                 <div class="container">
                     <div class="section-head reveal-up">
                         <div class="strand-divider"></div>
@@ -1879,8 +2000,8 @@
                             <img src="assets/images/image2.png" alt="Leave-In Conditioner" loading="lazy" decoding="async" width="400" height="400">
                             <span>Leave-In Conditioner</span>
                         </div>
-                        <div class="gallery-item g3" data-image="assets/images/image5.png" data-alt="Satin Hair Bonnets">
-                            <img src="assets/images/image5.png" alt="Satin Hair Bonnets" loading="lazy" decoding="async" width="400" height="400">
+                        <div class="gallery-item g3" data-image="assets/images/image5.png" data-alt="Satin Hair Bonnets – assorted colours">
+                            <img src="assets/images/image5.png" alt="Satin Hair Bonnets – assorted colours" loading="lazy" decoding="async" width="400" height="400">
                             <span>Satin Hair Bonnets</span>
                         </div>
                         <div class="gallery-item g4" data-image="assets/images/image6.png" data-alt="Electric Hot Comb">
@@ -1895,12 +2016,29 @@
                             <img src="assets/images/image4.png" alt="Dreadlock Styling Foam" loading="lazy" decoding="async" width="400" height="400">
                             <span>Dreadlock Styling Foam</span>
                         </div>
+                        <!-- INDIVIDUAL BONNET COLOURS IN GALLERY -->
+                        <div class="gallery-item g7" data-image="assets/images/image7.jpg" data-alt="Satin Bonnet – Pink">
+                            <img src="assets/images/image7.jpg" alt="Satin Bonnet – Pink" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Satin Bonnet – Pink</span>
+                        </div>
+                        <div class="gallery-item g8" data-image="assets/images/image8.jpg" data-alt="Satin Bonnet – Purple">
+                            <img src="assets/images/image8.jpg" alt="Satin Bonnet – Purple" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Satin Bonnet – Purple</span>
+                        </div>
+                        <div class="gallery-item g9" data-image="assets/images/image9.jpg" data-alt="Satin Bonnet – Brown">
+                            <img src="assets/images/image9.jpg" alt="Satin Bonnet – Brown" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Satin Bonnet – Brown</span>
+                        </div>
+                        <div class="gallery-item g10" data-image="assets/images/image10.jpg" data-alt="Satin Bonnet – Orange">
+                            <img src="assets/images/image10.jpg" alt="Satin Bonnet – Orange" loading="lazy" decoding="async" width="400" height="400">
+                            <span>Satin Bonnet – Orange</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- ============ WHY CHOOSE ============ -->
-            <section class="section section-alt" id="why">
+            <section class="section" id="why">
                 <div class="container">
                     <div class="section-head reveal-up">
                         <div class="strand-divider"></div>
@@ -1956,7 +2094,7 @@
             </section>
 
             <!-- ============ TESTIMONIALS ============ -->
-            <section class="section" id="testimonials">
+            <section class="section section-alt" id="testimonials">
                 <div class="container">
                     <div class="section-head reveal-up">
                         <div class="strand-divider"></div>
@@ -2048,6 +2186,10 @@
                                     <option>Professional Comb Set</option>
                                     <option>Dreadlock Styling Foam</option>
                                     <option>Satin Hair Bonnets</option>
+                                    <option>Satin Bonnet – Pink</option>
+                                    <option>Satin Bonnet – Purple</option>
+                                    <option>Satin Bonnet – Brown</option>
+                                    <option>Satin Bonnet – Orange</option>
                                     <option>Electric Hot Comb</option>
                                     <option>Something else / not sure yet</option>
                                 </select>
@@ -2137,6 +2279,7 @@
                             <div class="footer-col">
                                 <h4>Quick Links</h4>
                                 <a href="#about">About</a>
+                                <a href="#founder">Founder</a>
                                 <a href="#products">Products</a>
                                 <a href="#gallery">Gallery</a>
                                 <a href="#why">Why Us</a>
