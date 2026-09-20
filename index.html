@@ -18,11 +18,13 @@
     <meta property="og:description" content="Premium hair care products delivered across Lagos &amp; Ogun State. Shop hydrating shampoo, leave-in conditioner, satin bonnets, and more.">
     <meta property="og:url" content="https://bigwurahaircare.vercel.app/">
     <meta property="og:site_name" content="Big Wura Hair Care">
+    <meta property="og:image" content="https://bigwurahaircare.vercel.app/logo.png">
 
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Big Wura Hair Care · Care For Every Strand">
     <meta name="twitter:description" content="Premium hair care products delivered across Lagos &amp; Ogun State.">
+    <meta name="twitter:image" content="https://bigwurahaircare.vercel.app/logo.png">
 
     <!-- Favicon & Icons -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -38,20 +40,20 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BeautySalon",
+        "@type": "OnlineStore",
         "name": "Big Wura Hair Care",
-        "description": "Premium hair care products and accessories for natural hair and wigs.",
+        "description": "Premium hair care products and accessories for natural hair and wigs. Delivered across Lagos and Ogun State.",
+        "url": "https://bigwurahaircare.vercel.app/",
         "logo": "https://bigwurahaircare.vercel.app/logo.png",
+        "image": "https://bigwurahaircare.vercel.app/logo.png",
         "telephone": "+2348077758240",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Lagos",
-            "addressRegion": "Lagos",
-            "addressCountry": "NG"
-        },
-        "openingHours": "Mo-Sa 09:00-19:00",
-        "paymentAccepted": "Opay, Moniepoint",
-        "url": "https://bigwurahaircare.vercel.app/"
+        "areaServed": [
+            { "@type": "AdministrativeArea", "name": "Lagos State" },
+            { "@type": "AdministrativeArea", "name": "Ogun State" }
+        ],
+        "paymentAccepted": "Bank Transfer",
+        "currenciesAccepted": "NGN",
+        "openingHours": "Mo-Sa 09:00-19:00"
     }
     </script>
 
@@ -89,6 +91,33 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+        }
+
+        #introSkip {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 120;
+            background: transparent;
+            color: var(--gold-soft);
+            border: 1px solid rgba(234, 210, 137, 0.4);
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        #introSkip:hover {
+            background: rgba(234, 210, 137, 0.1);
+            border-color: var(--gold-soft);
+        }
+
+        #introSkip:focus-visible {
+            outline: 3px solid var(--gold-bright);
+            outline-offset: 3px;
         }
 
         .wrapper {
@@ -171,11 +200,11 @@
         }
 
         .hero-content {
-            opacity: 0;
-            transform: scale(0.94);
+            /* Shown by default — JS hides it only when the intro will actually run */
+            opacity: 1;
+            transform: scale(1);
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                        letter-spacing 1.2s ease;
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .hero-content.visible {
@@ -183,23 +212,9 @@
             transform: scale(1);
         }
 
-        .hero-content h1 {
-            color: #ffe8a5;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .hero-content .sub {
-            color: #d4af37;
-            margin-top: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            font-size: 1.2rem;
-            opacity: 0.85;
+        .hero-content.hidden-for-intro {
+            opacity: 0;
+            transform: scale(0.94);
         }
 
         /* ===== KEYFRAMES ===== */
@@ -260,7 +275,6 @@
 
         /* ===== MAIN CSS VARIABLES ===== */
         :root {
-            /* Colors */
             --bg: #0A0908;
             --bg-alt: #141210;
             --bg-card: #1A160F;
@@ -276,10 +290,6 @@
             --line: rgba(248, 244, 232, 0.14);
             --radius: 18px;
             --ease: cubic-bezier(0.16, 1, 0.3, 1);
-
-            /* Constants */
-            --phone-number: '2348077758240';
-            --business-name: 'Big Wura Hair Care';
         }
 
         /* ===== BASE SITE STYLES ===== */
@@ -548,23 +558,15 @@
             transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), top 0.3s var(--ease);
         }
 
-        .nav-toggle span:nth-child(1) {
-            top: 2px;
-        }
-        .nav-toggle span:nth-child(2) {
-            top: 10px;
-        }
-        .nav-toggle span:nth-child(3) {
-            top: 18px;
-        }
+        .nav-toggle span:nth-child(1) { top: 2px; }
+        .nav-toggle span:nth-child(2) { top: 10px; }
+        .nav-toggle span:nth-child(3) { top: 18px; }
 
         #siteNav.open .nav-toggle span:nth-child(1) {
             top: 10px;
             transform: rotate(45deg);
         }
-        #siteNav.open .nav-toggle span:nth-child(2) {
-            opacity: 0;
-        }
+        #siteNav.open .nav-toggle span:nth-child(2) { opacity: 0; }
         #siteNav.open .nav-toggle span:nth-child(3) {
             top: 10px;
             transform: rotate(-45deg);
@@ -598,13 +600,7 @@
                 border-bottom: 1px solid var(--line);
             }
 
-            .nav-cta .btn-secondary {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
+            .nav-toggle { display: block; }
         }
 
         /* ===== HERO ===== */
@@ -632,11 +628,11 @@
         }
 
         .hero-content h1 {
-            color: var(--cream) !important;
-            text-shadow: 0 0 30px rgba(233, 195, 74, 0.18) !important;
-            font-size: clamp(2.7rem, 7.2vw, 4.8rem) !important;
-            font-weight: 500 !important;
-            letter-spacing: -0.01em !important;
+            color: var(--cream);
+            text-shadow: 0 0 30px rgba(233, 195, 74, 0.18);
+            font-size: clamp(2.7rem, 7.2vw, 4.8rem);
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
         .hero-content h1 em {
@@ -648,13 +644,13 @@
         }
 
         .hero-content .sub {
-            color: var(--cream-soft) !important;
+            color: var(--cream-soft);
             font-family: 'Manrope', sans-serif;
-            letter-spacing: 0.02em !important;
-            font-weight: 400 !important;
-            font-size: 1.08rem !important;
+            letter-spacing: 0.02em;
+            font-weight: 400;
+            font-size: 1.08rem;
             max-width: 560px;
-            margin: 1.2rem auto 0 !important;
+            margin: 1.2rem auto 0;
             line-height: 1.75;
         }
 
@@ -679,7 +675,6 @@
             height: 220px;
             top: 6%;
             right: 6%;
-            animation-delay: 0s;
         }
 
         .hero-orb.o2 {
@@ -692,13 +687,8 @@
         }
 
         @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-18px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
         }
 
         /* ===== STAT BAR ===== */
@@ -731,9 +721,7 @@
         }
 
         @media (max-width: 760px) {
-            .stat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         /* ===== SECTION SHELL ===== */
@@ -741,9 +729,7 @@
             padding: clamp(4.5rem, 9vw, 7.5rem) 0;
         }
 
-        .section-alt {
-            background: var(--bg-alt);
-        }
+        .section-alt { background: var(--bg-alt); }
 
         .section-dark {
             background: var(--bg-deep);
@@ -753,13 +739,8 @@
         }
 
         .section-dark h2,
-        .section-dark h3 {
-            color: var(--cream);
-        }
-
-        .section-dark p {
-            color: var(--cream-soft);
-        }
+        .section-dark h3 { color: var(--cream); }
+        .section-dark p { color: var(--cream-soft); }
 
         .section-head {
             max-width: 640px;
@@ -792,9 +773,7 @@
             margin-bottom: 1.1rem;
         }
 
-        .about-copy p:last-child {
-            margin-bottom: 0;
-        }
+        .about-copy p:last-child { margin-bottom: 0; }
 
         .about-visual {
             position: relative;
@@ -844,9 +823,7 @@
         }
 
         @media (max-width: 820px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
+            .about-grid { grid-template-columns: 1fr; }
             .about-visual {
                 order: -1;
                 max-width: 420px;
@@ -889,9 +866,7 @@
             margin-bottom: 1.1rem;
         }
 
-        .founder-copy p:last-child {
-            margin-bottom: 0;
-        }
+        .founder-copy p:last-child { margin-bottom: 0; }
 
         .founder-signature {
             font-family: 'Fraunces', serif;
@@ -902,9 +877,7 @@
         }
 
         @media (max-width: 820px) {
-            .founder-grid {
-                grid-template-columns: 1fr;
-            }
+            .founder-grid { grid-template-columns: 1fr; }
             .founder-visual {
                 max-width: 380px;
                 margin: 0 auto;
@@ -919,12 +892,8 @@
             align-items: center;
         }
 
-        .spotlight.reverse .spotlight-media {
-            order: 2;
-        }
-        .spotlight.reverse .spotlight-copy {
-            order: 1;
-        }
+        .spotlight.reverse .spotlight-media { order: 2; }
+        .spotlight.reverse .spotlight-copy { order: 1; }
 
         .spotlight-media {
             position: relative;
@@ -943,9 +912,7 @@
             transition: transform 0.9s var(--ease);
         }
 
-        .spotlight-media:hover img {
-            transform: scale(1.05);
-        }
+        .spotlight-media:hover img { transform: scale(1.05); }
 
         .spotlight-copy h3 {
             font-size: clamp(1.5rem, 3vw, 2.1rem);
@@ -957,19 +924,15 @@
             margin-bottom: 1.5rem;
         }
 
-        .spotlight+.spotlight {
+        .spotlight + .spotlight {
             margin-top: clamp(3.5rem, 8vw, 6rem);
         }
 
         @media (max-width: 820px) {
             .spotlight,
-            .spotlight.reverse {
-                grid-template-columns: 1fr;
-            }
+            .spotlight.reverse { grid-template-columns: 1fr; }
             .spotlight.reverse .spotlight-media,
-            .spotlight.reverse .spotlight-copy {
-                order: initial;
-            }
+            .spotlight.reverse .spotlight-copy { order: initial; }
             .spotlight-media {
                 max-width: 460px;
                 margin: 0 auto;
@@ -1016,9 +979,7 @@
             will-change: transform;
         }
 
-        .product-card:hover .product-media img {
-            transform: scale(1.08);
-        }
+        .product-card:hover .product-media img { transform: scale(1.08); }
 
         .product-media::after {
             content: '';
@@ -1033,9 +994,7 @@
             pointer-events: none;
         }
 
-        .product-card:hover .product-media::after {
-            left: 130%;
-        }
+        .product-card:hover .product-media::after { left: 130%; }
 
         .product-body {
             padding: 1.4rem 1.5rem 1.6rem;
@@ -1070,15 +1029,11 @@
         }
 
         @media (max-width: 900px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 560px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
+            .product-grid { grid-template-columns: 1fr; }
         }
 
         /* ===== GALLERY ===== */
@@ -1104,9 +1059,7 @@
             transition: transform 0.8s var(--ease);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        .gallery-item:hover img { transform: scale(1.1); }
 
         .gallery-item::before {
             content: '';
@@ -1117,9 +1070,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
+        .gallery-item:hover::before { opacity: 1; }
 
         .gallery-item span {
             position: absolute;
@@ -1142,21 +1093,15 @@
             grid-column: span 2;
             grid-row: span 2;
         }
-        .gallery-item.g4 {
-            grid-column: span 2;
-        }
-        .gallery-item.g6 {
-            grid-row: span 2;
-        }
+        .gallery-item.g4 { grid-column: span 2; }
+        .gallery-item.g6 { grid-row: span 2; }
 
         @media (max-width: 820px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 150px;
             }
-            .gallery-item.g1 {
-                grid-column: span 2;
-            }
+            .gallery-item.g1 { grid-column: span 2; }
         }
 
         /* ===== LIGHTBOX ===== */
@@ -1173,6 +1118,7 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
             cursor: pointer;
+            outline: none;
         }
 
         .lightbox-overlay.active {
@@ -1190,9 +1136,7 @@
             transition: transform 0.4s var(--ease);
         }
 
-        .lightbox-overlay.active .lightbox-content {
-            transform: scale(1);
-        }
+        .lightbox-overlay.active .lightbox-content { transform: scale(1); }
 
         .lightbox-close {
             position: fixed;
@@ -1210,7 +1154,6 @@
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            transition: background 0.3s ease, transform 0.3s ease;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease, background 0.3s ease, transform 0.3s ease;
@@ -1273,10 +1216,7 @@
             margin-bottom: 1.1rem;
         }
 
-        .why-icon svg {
-            width: 20px;
-            height: 20px;
-        }
+        .why-icon svg { width: 20px; height: 20px; }
 
         .why-card h3 {
             font-size: 1.08rem;
@@ -1289,15 +1229,11 @@
         }
 
         @media (max-width: 820px) {
-            .why-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .why-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 560px) {
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
+            .why-grid { grid-template-columns: 1fr; }
         }
 
         /* ===== TESTIMONIALS ===== */
@@ -1336,11 +1272,8 @@
             color: var(--cream-dim);
         }
 
-
         @media (max-width: 820px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
+            .testimonial-grid { grid-template-columns: 1fr; }
         }
 
         /* ===== BRAND PROMISE ===== */
@@ -1350,9 +1283,7 @@
             text-align: center;
         }
 
-        .promise-wrap .eyebrow {
-            color: var(--gold-soft);
-        }
+        .promise-wrap .eyebrow { color: var(--gold-soft); }
 
         .promise-quote {
             font-family: 'Fraunces', serif;
@@ -1400,9 +1331,7 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .contact-list li:first-child {
-            padding-top: 0;
-        }
+        .contact-list li:first-child { padding-top: 0; }
 
         .contact-list strong {
             font-size: 0.78rem;
@@ -1411,9 +1340,7 @@
             color: var(--gold-soft);
         }
 
-        .contact-list span {
-            font-size: 0.98rem;
-        }
+        .contact-list span { font-size: 0.98rem; }
 
         .contact-form {
             background: var(--bg-card);
@@ -1449,9 +1376,7 @@
         }
 
         .form-row input::placeholder,
-        .form-row textarea::placeholder {
-            color: var(--cream-dim);
-        }
+        .form-row textarea::placeholder { color: var(--cream-dim); }
 
         .form-row input:focus,
         .form-row select:focus,
@@ -1494,9 +1419,7 @@
         }
 
         @media (max-width: 820px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            .contact-grid { grid-template-columns: 1fr; }
         }
 
         /* ===== FAQ ===== */
@@ -1505,9 +1428,7 @@
             margin: 0 auto;
         }
 
-        .faq-item {
-            border-bottom: 1px solid var(--line);
-        }
+        .faq-item { border-bottom: 1px solid var(--line); }
 
         .faq-item summary {
             cursor: pointer;
@@ -1522,9 +1443,7 @@
             color: var(--cream);
         }
 
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
+        .faq-item summary::-webkit-details-marker { display: none; }
 
         .faq-item summary:focus-visible {
             outline: 3px solid var(--gold-bright);
@@ -1552,11 +1471,7 @@
             transform: translate(-50%, -50%);
         }
 
-        .faq-plus::before {
-            width: 10px;
-            height: 1.4px;
-        }
-
+        .faq-plus::before { width: 10px; height: 1.4px; }
         .faq-plus::after {
             width: 1.4px;
             height: 10px;
@@ -1617,9 +1532,7 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .footer-brand .nav-logo {
-            color: var(--gold-soft);
-        }
+        .footer-brand .nav-logo { color: var(--gold-soft); }
 
         .footer-brand p {
             margin-top: 0.6rem;
@@ -1651,14 +1564,9 @@
             transition: color 0.3s ease;
         }
 
-        .footer-col a:hover {
-            color: var(--gold-soft);
-        }
-
+        .footer-col a:hover { color: var(--gold-soft); }
         .footer-col a[href^="tel:"]:hover,
-        .footer-col a[href^="mailto:"]:hover {
-            color: var(--gold-soft);
-        }
+        .footer-col a[href^="mailto:"]:hover { color: var(--gold-soft); }
 
         .footer-bottom {
             padding-top: 1.6rem;
@@ -1687,9 +1595,7 @@
             transition: transform 0.35s var(--ease);
         }
 
-        .wa-fab:hover {
-            transform: scale(1.08);
-        }
+        .wa-fab:hover { transform: scale(1.08); }
 
         .wa-fab:focus-visible {
             outline: 3px solid var(--gold-bright);
@@ -1712,13 +1618,13 @@
             <div class="glow"></div>
         </div>
         <div class="flash"></div>
+        <button id="introSkip" type="button" aria-label="Skip intro">Skip →</button>
     </section>
 
     <!-- ===== MAIN APP ===== -->
     <main id="app">
         <div id="site">
 
-            <!-- Scroll Progress Bar -->
             <div id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
             <!-- ============ NAVIGATION ============ -->
@@ -1735,7 +1641,6 @@
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                     <div class="nav-cta">
-                        <a class="btn btn-secondary" href="#about">Learn More</a>
                         <a class="btn btn-primary" href="https://wa.me/2348077758240?text=Hi%20Big%20Wura%20Hair%20Care%2C%20I%27d%20like%20to%20know%20more%20about%20your%20products" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">Message Us</a>
                     </div>
                     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
@@ -1816,9 +1721,9 @@
                     </div>
                     <div class="founder-copy reveal-up">
                         <span class="eyebrow">Meet the Founder</span>
-                        <h2>Adediwura Bakare, 19</h2>
+                        <h2>Adediwura Bakare</h2>
                         <p>Adediwura started Big Wura Hair Care in early 2026 with a clear goal: to build a business that would make her financially independent while helping people around her feel confident in their hair.</p>
-                        <p>At just 19, she personally tests every product before it reaches the shelf. From shampoos and conditioners to bonnets and styling tools, her standard is simple — if she wouldn't use it herself, it doesn't make the cut.</p>
+                        <p>She personally tests every product before it reaches the shelf. From shampoos and conditioners to bonnets and styling tools, her standard is simple — if she wouldn't use it herself, it doesn't make the cut.</p>
                         <p>Her vision is to grow Big Wura into a household name for premium, affordable hair care across Nigeria, one strand at a time.</p>
                         <p class="founder-signature">— Adediwura Bakare, Founder</p>
                     </div>
@@ -1909,7 +1814,6 @@
                                 </div>
                             </article>
 
-                            <!-- GENERAL BONNET SHOWCASE -->
                             <article class="product-card reveal-up">
                                 <div class="product-media">
                                     <img src="assets/images/image5.png" alt="Big Wura Satin Hair Bonnets – assorted colours" loading="lazy" decoding="async" width="400" height="400">
@@ -1932,7 +1836,6 @@
                                 </div>
                             </article>
 
-                            <!-- INDIVIDUAL BONNET COLOURS -->
                             <article class="product-card reveal-up">
                                 <div class="product-media">
                                     <img src="assets/images/image7.jpg" alt="Big Wura Satin Bonnet – Pink" loading="lazy" decoding="async" width="400" height="400">
@@ -2016,7 +1919,6 @@
                             <img src="assets/images/image4.png" alt="Dreadlock Styling Foam" loading="lazy" decoding="async" width="400" height="400">
                             <span>Dreadlock Styling Foam</span>
                         </div>
-                        <!-- INDIVIDUAL BONNET COLOURS IN GALLERY -->
                         <div class="gallery-item g7" data-image="assets/images/image7.jpg" data-alt="Satin Bonnet – Pink">
                             <img src="assets/images/image7.jpg" alt="Satin Bonnet – Pink" loading="lazy" decoding="async" width="400" height="400">
                             <span>Satin Bonnet – Pink</span>
@@ -2100,23 +2002,23 @@
                         <div class="strand-divider"></div>
                         <span class="eyebrow">What Customers Say</span>
                         <h2>Real hair, real results</h2>
-                        <p>A few words from people who've tried us — swap these for your own customer quotes whenever you're ready.</p>
+                        <p>Words from customers who've shopped with us.</p>
                     </div>
                     <div class="testimonial-grid">
                         <div class="testimonial-card reveal-up">
                             <div class="stars" aria-hidden="true">★★★★★</div>
                             <p>"My hair genuinely feels softer and easier to manage since I switched to the leave-in conditioner."</p>
-                            <div class="testimonial-name"> Abigael, Lagos</div>
+                            <div class="testimonial-name">Abigael, Lagos</div>
                         </div>
                         <div class="testimonial-card reveal-up">
                             <div class="stars" aria-hidden="true">★★★★★</div>
                             <p>"Ordered on WhatsApp in the evening, had it delivered the next day. Smooth from start to finish."</p>
-                            <div class="testimonial-name"> Ameerah, Osun</div>
+                            <div class="testimonial-name">Ameerah, Osun</div>
                         </div>
                         <div class="testimonial-card reveal-up">
                             <div class="stars" aria-hidden="true">★★★★★</div>
                             <p>"Packaging alone made it feel premium. The products backed it up too."</p>
-                            <div class="testimonial-name"> Rachael, Ogun</div>
+                            <div class="testimonial-name">Rachael, Ogun</div>
                         </div>
                     </div>
                 </div>
@@ -2329,34 +2231,27 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        /**
-         * Big Wura Hair Care - Main Application
-         * Production-ready JavaScript with constants, clean event handling, and accessibility
-         */
-
         (function() {
             'use strict';
 
-            // ===== CONSTANTS =====
             const CONFIG = {
                 PHONE_NUMBER: '2348077758240',
                 BUSINESS_NAME: 'Big Wura Hair Care',
                 INTRO_TIMEOUT: 8000,
                 SCROLL_THRESHOLD: 0.15,
                 SCROLL_OFFSET: -60,
-                LIGHTBOX_ANIMATION_DURATION: 400
+                INTRO_SESSION_KEY: 'bw_intro_seen'
             };
 
-            // ===== DOM REFERENCES =====
             const $ = (selector) => document.querySelector(selector);
             const $$ = (selector) => document.querySelectorAll(selector);
 
             const dom = {
                 intro: $('#intro'),
+                introSkip: $('#introSkip'),
                 glow: $('#intro .glow'),
                 strand: $('#intro .strand'),
                 flash: $('#intro .flash'),
-                wrapper: $('#intro .wrapper'),
                 app: $('#app'),
                 heroContent: $('#heroContent'),
                 progress: $('#scrollProgress'),
@@ -2378,15 +2273,36 @@
             };
 
             // ===== INTRO ANIMATION =====
+            function revealSite() {
+                dom.intro?.classList.add('fade-out');
+                dom.app?.classList.add('reveal');
+                dom.heroContent?.classList.add('visible');
+                dom.heroContent?.classList.remove('hidden-for-intro');
+                sessionStorage.setItem(CONFIG.INTRO_SESSION_KEY, '1');
+            }
+
             function initIntro() {
+                // If DOM pieces are missing, just reveal site.
                 if (!dom.intro || !dom.glow || !dom.strand || !dom.flash || !dom.app || !dom.heroContent) {
                     if (dom.intro) dom.intro.style.display = 'none';
-                    if (dom.app) {
-                        dom.app.classList.add('reveal');
-                        if (dom.heroContent) dom.heroContent.classList.add('visible');
-                    }
+                    dom.app?.classList.add('reveal');
+                    dom.heroContent?.classList.add('visible');
                     return;
                 }
+
+                // Skip intro on repeat visits.
+                if (sessionStorage.getItem(CONFIG.INTRO_SESSION_KEY)) {
+                    dom.intro.style.display = 'none';
+                    dom.app.classList.add('reveal');
+                    dom.heroContent.classList.add('visible');
+                    return;
+                }
+
+                // Hide hero ONLY now — because the intro will actually run.
+                dom.heroContent.classList.add('hidden-for-intro');
+
+                // Skip button
+                dom.introSkip?.addEventListener('click', revealSite);
 
                 dom.glow.addEventListener('animationend', function handleGlow(event) {
                     if (event.animationName !== 'travel') return;
@@ -2399,30 +2315,19 @@
                         dom.flash.classList.add('fire');
 
                         setTimeout(() => {
-                            dom.intro.classList.add('fade-out');
-                            dom.app.classList.add('reveal');
-
-                            setTimeout(() => {
-                                dom.heroContent.classList.add('visible');
-                            }, 30);
+                            revealSite();
                         }, 1000);
                     }, 2600);
                 });
 
-                // Fallback: if intro doesn't complete, force reveal
+                // Fallback if animations fail
                 setTimeout(() => {
-                    if (dom.intro && !dom.intro.classList.contains('fade-out') &&
-                        dom.app && !dom.app.classList.contains('reveal')) {
+                    if (!dom.intro.classList.contains('fade-out')) {
                         dom.strand.classList.add('hide');
                         dom.glow.classList.remove('pulse');
                         dom.glow.classList.add('explode');
                         dom.flash.classList.add('fire');
-
-                        setTimeout(() => {
-                            dom.intro.classList.add('fade-out');
-                            dom.app.classList.add('reveal');
-                            if (dom.heroContent) dom.heroContent.classList.add('visible');
-                        }, 1000);
+                        setTimeout(revealSite, 1000);
                     }
                 }, CONFIG.INTRO_TIMEOUT);
             }
@@ -2439,7 +2344,6 @@
                         dom.progress.setAttribute('aria-valuenow', Math.round(percent));
                     }
                 }
-
                 window.addEventListener('scroll', updateProgress, { passive: true });
                 updateProgress();
             }
@@ -2460,7 +2364,6 @@
                         threshold: CONFIG.SCROLL_THRESHOLD,
                         rootMargin: '0px 0px ' + CONFIG.SCROLL_OFFSET + 'px 0px'
                     });
-
                     revealEls.forEach(el => io.observe(el));
                 } else {
                     revealEls.forEach(el => el.classList.add('in-view'));
@@ -2469,52 +2372,42 @@
 
             // ===== NAVIGATION =====
             function initNavigation() {
-                // Mobile toggle
                 if (dom.navToggle && dom.siteNav) {
                     dom.navToggle.addEventListener('click', function() {
                         dom.siteNav.classList.toggle('open');
                     });
                 }
 
-                // Close mobile nav on link click
                 dom.navLinks.forEach(link => {
                     link.addEventListener('click', function() {
-                        if (dom.siteNav) dom.siteNav.classList.remove('open');
+                        dom.siteNav?.classList.remove('open');
                     });
                 });
 
-                // Active section highlighting
                 const sections = $$('section[id]');
                 if (sections.length > 0) {
-                    const navLinks = dom.navLinks;
-
                     function updateActiveSection() {
                         const scrollPos = window.scrollY + 120;
-
                         let currentSection = null;
                         sections.forEach(section => {
                             const rect = section.getBoundingClientRect();
                             const top = rect.top + window.scrollY;
                             const bottom = top + rect.height;
-
                             if (scrollPos >= top && scrollPos < bottom) {
                                 currentSection = section.id;
                             }
                         });
-
-                        navLinks.forEach(link => {
+                        dom.navLinks.forEach(link => {
                             link.classList.remove('active');
                             if (link.getAttribute('href') === '#' + currentSection) {
                                 link.classList.add('active');
                             }
                         });
                     }
-
                     window.addEventListener('scroll', updateActiveSection, { passive: true });
                     updateActiveSection();
                 }
 
-                // Smooth scroll for anchor links
                 document.querySelectorAll('a[href^="#"]').forEach(a => {
                     a.addEventListener('click', function(e) {
                         const id = this.getAttribute('href');
@@ -2541,14 +2434,12 @@
                     const interest = dom.cfInterest.value;
                     const message = dom.cfMessage.value.trim();
 
-                    // Validate
                     if (!name || name.length < 2) {
                         dom.cfName.focus();
                         dom.cfName.style.borderColor = '#c0392b';
                         setTimeout(() => { dom.cfName.style.borderColor = ''; }, 2000);
                         return;
                     }
-
                     if (!phone || phone.length < 8) {
                         dom.cfPhone.focus();
                         dom.cfPhone.style.borderColor = '#c0392b';
@@ -2556,29 +2447,22 @@
                         return;
                     }
 
-                    // Disable button
-                    const submitBtn = dom.formSubmit;
-                    const submitText = dom.submitText;
-                    submitBtn.disabled = true;
-                    submitText.textContent = 'Opening WhatsApp...';
+                    dom.formSubmit.disabled = true;
+                    dom.submitText.textContent = 'Opening WhatsApp...';
 
-                    // Build message
                     let text = `Hi ${CONFIG.BUSINESS_NAME}, my name is ${name}.`;
                     text += ` I'm interested in ${interest}.`;
                     if (message) text += ` ${message}`;
                     text += ` You can reach me on ${phone}.`;
 
-                    // Open WhatsApp
                     const url = `https://wa.me/${CONFIG.PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
                     window.open(url, '_blank', 'noopener,noreferrer');
 
-                    // Restore button after delay
                     setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitText.textContent = 'Send via WhatsApp';
+                        dom.formSubmit.disabled = false;
+                        dom.submitText.textContent = 'Send via WhatsApp';
                     }, 3000);
 
-                    // Reset form
                     dom.contactForm.reset();
                 });
             }
@@ -2587,28 +2471,31 @@
             function initLightbox() {
                 if (!dom.lightbox || !dom.lightboxImage || !dom.lightboxClose) return;
 
+                let lastFocused = null;
+
                 function openLightbox(src, alt) {
+                    lastFocused = document.activeElement;
                     dom.lightboxImage.src = src;
                     dom.lightboxImage.alt = alt || 'Enlarged image';
                     dom.lightbox.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    dom.lightbox.focus();
+                    dom.lightboxClose.focus();
                 }
 
                 function closeLightbox() {
                     dom.lightbox.classList.remove('active');
                     document.body.style.overflow = '';
+                    if (lastFocused && typeof lastFocused.focus === 'function') {
+                        lastFocused.focus();
+                    }
                 }
 
-                // Gallery click
                 dom.galleryItems.forEach(item => {
                     item.addEventListener('click', function() {
                         const src = this.dataset.image;
                         const alt = this.dataset.alt || 'Gallery image';
                         if (src) openLightbox(src, alt);
                     });
-
-                    // Keyboard accessibility
                     item.setAttribute('role', 'button');
                     item.setAttribute('tabindex', '0');
                     item.addEventListener('keydown', function(e) {
@@ -2619,9 +2506,7 @@
                     });
                 });
 
-                // Close handlers
                 dom.lightboxClose.addEventListener('click', closeLightbox);
-
                 dom.lightbox.addEventListener('click', function(e) {
                     if (e.target === this) closeLightbox();
                 });
@@ -2632,14 +2517,11 @@
                     }
                 });
 
-                // Focus trap
                 dom.lightbox.addEventListener('keydown', function(e) {
                     if (e.key === 'Tab') {
-                        const focusable = dom.lightbox.querySelectorAll(
-                            'button, [tabindex="0"]');
+                        const focusable = dom.lightbox.querySelectorAll('button, [tabindex="0"]');
                         const first = focusable[0];
                         const last = focusable[focusable.length - 1];
-
                         if (e.shiftKey && document.activeElement === first) {
                             e.preventDefault();
                             last.focus();
@@ -2654,48 +2536,32 @@
             // ===== FAQ ANIMATION =====
             function initFaq() {
                 const details = $$('.faq-item');
-
-                details.forEach((detail, index) => {
+                details.forEach((detail) => {
                     const summary = detail.querySelector('summary');
                     if (!summary) return;
-
-                    // Set up animation on open/close
                     detail.addEventListener('toggle', function() {
                         const content = this.querySelector('p');
                         if (!content) return;
-
                         if (this.open) {
-                            // Opening animation
                             content.style.maxHeight = '0';
                             content.style.opacity = '0';
                             content.style.overflow = 'hidden';
                             content.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
-
-                            // Trigger reflow
                             void content.offsetHeight;
-
-                            const fullHeight = content.scrollHeight;
-                            content.style.maxHeight = fullHeight + 'px';
+                            content.style.maxHeight = content.scrollHeight + 'px';
                             content.style.opacity = '1';
-
                             setTimeout(() => {
                                 content.style.maxHeight = 'none';
                                 content.style.overflow = '';
                                 content.style.transition = '';
                             }, 450);
                         } else {
-                            // Closing animation
-                            const fullHeight = content.scrollHeight;
-                            content.style.maxHeight = fullHeight + 'px';
+                            content.style.maxHeight = content.scrollHeight + 'px';
                             content.style.opacity = '1';
                             content.style.overflow = 'hidden';
-
-                            // Trigger reflow
                             void content.offsetHeight;
-
                             content.style.maxHeight = '0';
                             content.style.opacity = '0';
-
                             setTimeout(() => {
                                 content.style.maxHeight = '';
                                 content.style.opacity = '';
@@ -2704,12 +2570,9 @@
                             }, 450);
                         }
                     });
-
-                    // Keyboard accessibility
                     summary.setAttribute('role', 'button');
                 });
 
-                // Set initial state for open FAQ
                 const firstFaq = document.querySelector('.faq-item[open]');
                 if (firstFaq) {
                     const content = firstFaq.querySelector('p');
@@ -2723,33 +2586,27 @@
             // ===== DYNAMIC COPYRIGHT YEAR =====
             function initCopyright() {
                 if (dom.copyrightYear) {
-                    const year = new Date().getFullYear();
-                    dom.copyrightYear.textContent = `© ${year} Big Wura Hair Care. All rights reserved.`;
+                    dom.copyrightYear.textContent = `© ${new Date().getFullYear()} Big Wura Hair Care. All rights reserved.`;
                 }
             }
 
             // ===== PREFERS-REDUCED-MOTION =====
             function checkReducedMotion() {
-                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-                if (prefersReducedMotion.matches) {
-                    document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-                    document.documentElement.style.setProperty('--transition-duration', '0.01ms');
-                }
-
-                prefersReducedMotion.addEventListener('change', function(e) {
-                    if (e.matches) {
+                const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+                const apply = (matches) => {
+                    if (matches) {
                         document.documentElement.style.setProperty('--animation-duration', '0.01ms');
                         document.documentElement.style.setProperty('--transition-duration', '0.01ms');
                     } else {
                         document.documentElement.style.setProperty('--animation-duration', '');
                         document.documentElement.style.setProperty('--transition-duration', '');
                     }
-                });
+                };
+                apply(mq.matches);
+                mq.addEventListener('change', (e) => apply(e.matches));
             }
 
-            // ===== INITIALIZE =====
             function init() {
-                // Run in order of importance
                 initIntro();
                 initScrollProgress();
                 initScrollReveal();
@@ -2759,20 +2616,13 @@
                 initFaq();
                 initCopyright();
                 checkReducedMotion();
-
-                // Log success
-                console.log('✅ Big Wura Hair Care — Production-ready');
-                console.log(`📱 Phone: +${CONFIG.PHONE_NUMBER}`);
-                console.log(`🏢 Business: ${CONFIG.BUSINESS_NAME}`);
             }
 
-            // Run after DOM is ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
                 init();
             }
-
         })();
     </script>
 
